@@ -28,6 +28,53 @@ class Home extends StatelessWidget{
               Card(
                     child: ListView(
                       shrinkWrap: true,
+                      children: [
+                        Container(
+                          height: 50,
+                          margin: const EdgeInsets.only(top: 10, bottom: 25),
+                          child: const Center(
+                            child: Text('QUIZ APP', style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                            ),),
+                          ),  
+                        ),
+                        OutlinedButton(
+                            onPressed: (){}, 
+                            child: const Text('Boton'),
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.deepPurple.shade100,
+                            elevation: 4,
+                            side: const BorderSide(width: 1)
+                          ),
+                        ),
+                        OutlinedButton(
+                            onPressed: (){},
+                            child: const Text('Boton'),
+                          style: OutlinedButton.styleFrom(
+                              backgroundColor: Colors.deepPurple.shade100,
+                              elevation: 4,
+                              side: const BorderSide(width: 1)
+                          ),),
+                        OutlinedButton(
+                            onPressed: (){},
+                            child: const Text('Boton'),
+                          style: OutlinedButton.styleFrom(
+                              backgroundColor: Colors.deepPurple.shade100,
+                              elevation: 4,
+                              side: const BorderSide(width: 1)
+                          ),
+                        ),
+                        OutlinedButton(
+                            onPressed: (){},
+                            child: const Text('Boton'),
+                          style: OutlinedButton.styleFrom(
+                              backgroundColor: Colors.deepPurple.shade100,
+                              elevation: 4,
+                              side: const BorderSide(width: 1)
+                          ),
+                        ),
+                      ],
                     ),
                   ),
             ],
