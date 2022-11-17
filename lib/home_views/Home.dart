@@ -7,12 +7,32 @@ class Home extends StatelessWidget{
   @override
   Widget build (BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[100],
+      backgroundColor: Colors.deepPurpleAccent[100],
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.purple[100],
+        backgroundColor: Colors.deepPurpleAccent[100],
       ),
-      body: Center(child: Text('Home Page')),
+      body: Center(
+          child:Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 30,bottom: 50),
+                child:
+                 //   Image(image: FileImage('assets/images/LogoGraming1.png'))
+                Icon(
+                  Icons.school,
+                  size: 100,
+                  color: Colors.deepPurple[700],
+                ),
+              ),
+              Card(
+                    child: ListView(
+                      shrinkWrap: true,
+                    ),
+                  ),
+            ],
+          )
+      ),
     );
   }
 
