@@ -15,7 +15,7 @@ class App extends StatelessWidget{
       routes: {
         '/home': (context) => Home(),
         //'/loginView': (context) => LoginView(),
-        '/logoWait': (context) => LogoWait("assets/images/LogoGraming3.png"),
+        //'/logoWait': (context) => LogoWait("assets/images/LogoGraming3.png"),
       },
     );
   }
