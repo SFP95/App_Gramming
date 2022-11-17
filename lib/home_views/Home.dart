@@ -26,54 +26,59 @@ class Home extends StatelessWidget{
                 ),
               ),
               Card(
+                margin: const EdgeInsets.all(15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                    color: Colors.deepPurple.shade300,
                     child: ListView(
                       shrinkWrap: true,
                       children: [
                         Container(
                           height: 50,
-                          margin: const EdgeInsets.only(top: 10, bottom: 25),
+                          margin: const EdgeInsets.only(top: 10, bottom: 25,right: 10,left: 10),
                           child: const Center(
                             child: Text('QUIZ APP', style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                            ),),
-                          ),  
-                        ),
-                        OutlinedButton(
-                            onPressed: (){}, 
-                            child: const Text('Boton'),
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: Colors.deepPurple.shade100,
-                            elevation: 4,
-                            side: const BorderSide(width: 1)
+                              fontSize: 35,
+                              color: Colors.black54,
+                            )),
+                          ),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black,
+                              ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Colors.deepPurple.shade600,
+                                Colors.deepPurple.shade100,
+                                Colors.deepPurple.shade100,
+                                Colors.deepPurple.shade100,
+                                Colors.deepPurple.shade600,
+                              ]
+                            ),
+                            borderRadius: BorderRadius.circular(10)
                           ),
                         ),
                         OutlinedButton(
+
                             onPressed: (){},
-                            child: const Text('Boton'),
+                            child: const Text('Start Quiz', style: TextStyle(fontSize: 30)),
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.deepPurple.shade100,
+                            elevation: 4,
+                            side: const BorderSide(width: 1),
+                        ),
+                        ),
+                        OutlinedButton(
+                            onPressed: (){},
+                            child: const Text('Review Quiz', style: TextStyle(fontSize: 30)),
                           style: OutlinedButton.styleFrom(
                               backgroundColor: Colors.deepPurple.shade100,
                               elevation: 4,
                               side: const BorderSide(width: 1)
                           ),),
-                        OutlinedButton(
-                            onPressed: (){},
-                            child: const Text('Boton'),
-                          style: OutlinedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple.shade100,
-                              elevation: 4,
-                              side: const BorderSide(width: 1)
-                          ),
-                        ),
-                        OutlinedButton(
-                            onPressed: (){},
-                            child: const Text('Boton'),
-                          style: OutlinedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple.shade100,
-                              elevation: 4,
-                              side: const BorderSide(width: 1)
-                          ),
-                        ),
                       ],
                     ),
                   ),
