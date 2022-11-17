@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gramming/home_views/Home.dart';
+import 'package:gramming/pages/Home.dart';
+import 'package:gramming/pages/QuizPage.dart';
+import 'package:gramming/pages/ReviewPage.dart';
 
 void main () {
   runApp( MyApp());
@@ -13,7 +15,12 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: Home()
+      initialRoute: '/',
+      routes:{
+        '/':(context) => const Home(),
+        '/QuizPage':(context) => const QuizPage(),
+        '/ReviewPage':(context) => const ReviewPage(),
+      },
     );
   }
 

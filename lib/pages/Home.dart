@@ -38,7 +38,7 @@ class Home extends StatelessWidget{
                           margin: const EdgeInsets.only(top: 10, bottom: 25,right: 10,left: 10),
                           child: const Center(
                             child: Text('QUIZ APP', style: TextStyle(
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w700,
                               fontSize: 35,
                               color: Colors.black54,
                             )),
@@ -58,12 +58,13 @@ class Home extends StatelessWidget{
                                 Colors.deepPurple.shade600,
                               ]
                             ),
-                            borderRadius: BorderRadius.circular(10)
+                            borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                         OutlinedButton(
-
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.pushNamed(context, '/QuizPage');
+                            },
                             child: const Text('Start Quiz', style: TextStyle(fontSize: 30)),
                           style: OutlinedButton.styleFrom(
                             backgroundColor: Colors.deepPurple.shade100,
@@ -72,7 +73,9 @@ class Home extends StatelessWidget{
                         ),
                         ),
                         OutlinedButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.pushNamed(context, '/ReviewPage');
+                            },
                             child: const Text('Review Quiz', style: TextStyle(fontSize: 30)),
                           style: OutlinedButton.styleFrom(
                               backgroundColor: Colors.deepPurple.shade100,
