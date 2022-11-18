@@ -7,6 +7,12 @@ class ReviewPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurpleAccent[100],
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent[100],
+        elevation: 0,
+        title: const Text('QUIZ'),
+      ),
       body: const Center(
         child: Text('REVIEW QUIZ'),
       ),
