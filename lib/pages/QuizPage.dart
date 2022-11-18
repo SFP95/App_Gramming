@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class QuizPage extends StatefulWidget{
   const QuizPage({Key? key}) : super (key:key);
@@ -9,6 +11,20 @@ class QuizPage extends StatefulWidget{
 }
 
 class _QuizPageState extends State<QuizPage> {
+
+  Future<void> readJson() async{
+    final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
+
+    setState(() {
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    readJson();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
