@@ -18,6 +18,8 @@ class _QuizPageState extends State<QuizPage> {
   int totalOps=4;
   Quiz quiz = Quiz(name: 'Quizs', quiestions: []);
 
+  int questionsIndex = 0;
+
   Future<void> readJson() async{
     final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
     final List<String> data = await json.decode(response);
@@ -59,7 +61,7 @@ class _QuizPageState extends State<QuizPage> {
       appBar: AppBar(
         backgroundColor: Colors.deepPurpleAccent[100],
         elevation: 0,
-        title: const Text('QUIZs'),
+        title:  Text(quiz.name),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -79,13 +81,13 @@ class _QuizPageState extends State<QuizPage> {
             constraints: const BoxConstraints(maxHeight: 450),
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
-              child: Card(
+              child:  quiz.quiestions.isNotEmpty ? Card(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
                       margin: const EdgeInsets.all(15),
-                      child:  Text('PREGUNTA 1',style: Theme.of(context).textTheme.headline1),
+                      child:  Text(quiz.quiestions[questionsIndex].question,style: Theme.of(context).textTheme.headline1),
                     ),
                     Flexible(
                       child: ListView.builder(
@@ -117,6 +119,8 @@ class _QuizPageState extends State<QuizPage> {
                     ),
                   ],
                 ),
+              ):const CircularProgressIndicator(
+                backgroundColor: Colors.deepPurple,
               ),
             ),
           ),
