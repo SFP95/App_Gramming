@@ -22,7 +22,14 @@ class _QuizPageState extends State<QuizPage> {
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 30),
-            child: LinearProgressIndicator(),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+                child: LinearProgressIndicator(
+                  color: Colors.deepPurpleAccent.shade400,
+                  value: .5,
+                  minHeight: 20,
+                )
+            ),
           ),
           Container(),
           TextButton(
