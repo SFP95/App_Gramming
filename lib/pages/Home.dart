@@ -66,9 +66,9 @@ class Home extends StatelessWidget{
                       onPressed: (){
                         Navigator.pushNamed(context, '/QuizPage');
                       },
-                      child: const Text('Start Quiz', style: TextStyle(fontSize: 30)),
+                      child: const Text('Start Quiz', style: TextStyle(fontSize: 30,color:Colors.black45)),
                       style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple.shade100,
+                        backgroundColor: Colors.deepPurple.shade200,
                         elevation: 4,
                         side: const BorderSide(width: 1),
                       ),
@@ -77,9 +77,9 @@ class Home extends StatelessWidget{
                       onPressed: (){
                         Navigator.pushNamed(context, '/ReviewPage');
                       },
-                      child: const Text('Review Quiz', style: TextStyle(fontSize: 30)),
+                      child: const Text('Review Quiz', style: TextStyle(fontSize: 30,color:Colors.black45)),
                       style: OutlinedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple.shade100,
+                          backgroundColor: Colors.deepPurple.shade200,
                           elevation: 4,
                           side: const BorderSide(width: 1)
                       ),),
