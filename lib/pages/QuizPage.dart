@@ -91,7 +91,7 @@ class _QuizPageState extends State<QuizPage> {
                     ),
                     Flexible(
                       child: ListView.builder(
-                        itemCount: 4,
+                        itemCount: totalOps,
                         itemBuilder: (_, index) {
                     return Container(
                       margin:  const EdgeInsets.all(9),
@@ -108,7 +108,7 @@ class _QuizPageState extends State<QuizPage> {
                         ),
                         leading: Text('${index + 1}',
                             style: Theme.of(context).textTheme.bodyText1),
-                        title: Text('Respuesta',style: Theme.of(context).textTheme.headline2),
+                        title: Text(quiz.quiestions[questionsIndex].options[index],style: Theme.of(context).textTheme.headline2),
                         onTap: (){
 
                         },
