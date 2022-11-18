@@ -79,7 +79,8 @@ class _QuizPageState extends State<QuizPage> {
           ),
           TextButton(
             onPressed: () {  },
-            child: const Text('Skip'),
+            child:  Text('Skip',
+              style: Theme.of(context).textTheme.bodyText1),
           ),
         ],
       ),
