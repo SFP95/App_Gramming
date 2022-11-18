@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:gramming/clases/Question.dart';
+import 'package:gramming/clases/Quiz.dart';
 
 class QuizPage extends StatefulWidget{
   const QuizPage({Key? key}) : super (key:key);
@@ -12,8 +14,33 @@ class QuizPage extends StatefulWidget{
 
 class _QuizPageState extends State<QuizPage> {
 
+  int totalQuiz=5;
+  int totalOps=4;
+  Quiz quiz = Quiz(name: 'Quizs', quiestions: []);
+
   Future<void> readJson() async{
     final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
+    final List<String> data = await json.decode(response);
+    List<int> opList = List<int>.generate(data.length, (i) => i);
+    List<int> questionsAdded=[];
+
+    while(true){
+      opList.shuffle();
+      int answer =opList[0];
+      if(questionsAdded.contains(answer)) continue;
+      questionsAdded.add(answer);
+
+      List<String> otherOptions=[];
+      for(var op in opList.sublist(1,totalOps)){
+        otherOptions.add(data[op]['answer']);
+      }
+
+      Question question = Question.fromJson(data[answer]);
+      question.addOptions(otherOptions);
+      quiz.quiestions.add(question);
+
+      if(quiz.quiestions.length>= totalQuiz) break;
+    }
 
     setState(() {
     });
