@@ -42,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
                   children: [
                     Container(
                       margin: const EdgeInsets.all(15),
-                      child: const Text('PREGUNTA 1'),
+                      child:  Text('PREGUNTA 1',style: Theme.of(context).textTheme.headline1),
                     ),
                     Flexible(
                       child: ListView.builder(
@@ -61,8 +61,9 @@ class _QuizPageState extends State<QuizPage> {
                           borderRadius: BorderRadius.all(Radius.circular(15),
                           ),
                         ),
-                        leading: Text('${index + 1}'),
-                        title: Text('Respuesta'),
+                        leading: Text('${index + 1}',
+                            style: Theme.of(context).textTheme.bodyText1),
+                        title: Text('Respuesta',style: Theme.of(context).textTheme.headline2),
                         onTap: (){
 
                         },
