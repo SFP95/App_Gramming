@@ -5,7 +5,7 @@ class Quiz {
   List<Question> questions;
   int rifgt=0;
 
-  Quiz({required this.name, required this.quiestions});
+  Quiz({required this.name, required this.questions});
 
-  double get percent => (rifgt/quiestions.length)*100;
+  double get percent => (rifgt/questions.length)*100;
 }
