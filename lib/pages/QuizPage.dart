@@ -16,25 +16,26 @@ class _QuizPageState extends State<QuizPage> {
 
   int totalQuiz=5;
   int totalOps=4;
-  Quiz quiz = Quiz(name: 'Quizs', quiestions: []);
-
   int questionsIndex = 0;
+  int progressIndex = 0;
+
+  Quiz quiz = Quiz(name: 'Quizs', quiestions: []);
 
   Future<void> readJson() async{
     final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
     final List<String> data = await json.decode(response);
-    List<int> opList = List<int>.generate(data.length, (i) => i);
+    List<int> optionList = List<int>.generate(data.length, (i) => i);
     List<int> questionsAdded=[];
 
     while(true){
-      opList.shuffle();
-      int answer =opList[0];
+      optionList.shuffle();
+      int answer =optionList[0];
       if(questionsAdded.contains(answer)) continue;
       questionsAdded.add(answer);
 
       List<String> otherOptions=[];
-      for(var op in opList.sublist(1,totalOps)){
-        otherOptions.add(data[op]['answer']);
+      for(var op in optionList.sublist(1,totalOps)){
+        otherOptions.add(data[op][answer]); // no m escoje 'answer' por algún motivo
       }
 
       Question question = Question.fromJson(data[answer]);
@@ -44,8 +45,7 @@ class _QuizPageState extends State<QuizPage> {
       if(quiz.quiestions.length>= totalQuiz) break;
     }
 
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
