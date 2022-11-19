@@ -76,7 +76,7 @@ class _QuizPageState extends State<QuizPage> {
 
   Widget buildResultDialog (BuildContext context){
     return AlertDialog(
-      title: Text('Results',style: Theme.of(context).textTheme.headline1,),
+      title: Text('Results',style: Theme.of(context).textTheme.headline3,),
       backgroundColor: Theme.of(context).primaryColorDark,
     );
   }
