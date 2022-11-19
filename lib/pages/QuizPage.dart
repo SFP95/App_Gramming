@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:gramming/clases/Question.dart';
-import 'package:gramming/clases/Quiz.dart';
 import 'package:gramming/pages/ResultPage.dart';
+import '../class/Question.dart';
+import '../class/Quiz.dart';
 
 class QuizPage extends StatefulWidget{
   const QuizPage({Key? key}) : super (key:key);
