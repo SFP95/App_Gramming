@@ -85,7 +85,7 @@ class _QuizPageState extends State<QuizPage> {
           Text("Total Quizs : $totalQuiz",style: Theme.of(context).textTheme.bodyText1,),
           Text("Correct Quizs : $quiz.right",style: Theme.of(context).textTheme.bodyText1,),
           Text("Incorrect Quizs : ${totalQuiz - quiz.rifgt}",style: Theme.of(context).textTheme.bodyText1,),
-          Text("Percent : ${quiz.percent}",style: Theme.of(context).textTheme.bodyText1,),
+          Text("Percent : ${quiz.percent} %",style: Theme.of(context).textTheme.bodyText1,),
         ],
       ),
       actions: [
