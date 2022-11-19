@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:gramming/clases/Question.dart';
 import 'package:gramming/clases/Quiz.dart';
+import 'package:gramming/pages/ResultPage.dart';
 
 class QuizPage extends StatefulWidget{
   const QuizPage({Key? key}) : super (key:key);
@@ -92,6 +93,8 @@ class _QuizPageState extends State<QuizPage> {
         TextButton(
             onPressed: (){
               Navigator.of(context).pop();
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context)=> ResultPage(quiz: quiz,)));
             },
             child: Text('Close',style: Theme.of(context).textTheme.headline3,))
       ],
