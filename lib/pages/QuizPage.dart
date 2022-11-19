@@ -19,7 +19,7 @@ class _QuizPageState extends State<QuizPage> {
   int questionsIndex = 0;
   int progressIndex = 0;
 
-  Quiz quiz = Quiz(name: 'Quizs', quiestions: []);
+  Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
   Future<void> readJson() async{
     final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
@@ -35,10 +35,10 @@ class _QuizPageState extends State<QuizPage> {
 
       List<String> otherOptions=[];
       for(var op in optionList.sublist(1,totalOps)){
-        otherOptions.add(data[op][answer]); // no m escoje 'answer' por algún motivo
+        otherOptions.add(data[op]['answer']); // no me coje 'answer' por algún motivo
       }
 
-      Question question = Question.fromJson(data[answer]);
+      Question question = Question.fromJson(data[answer]); // (data[answer]) no me tira
       question.addOptions(otherOptions);
       quiz.questions.add(question);
 
@@ -78,6 +78,23 @@ class _QuizPageState extends State<QuizPage> {
     return AlertDialog(
       title: Text('Results',style: Theme.of(context).textTheme.headline3,),
       backgroundColor: Theme.of(context).primaryColorDark,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Total Quizs : $totalQuiz",style: Theme.of(context).textTheme.bodyText1,),
+          Text("Correct Quizs : $quiz.right",style: Theme.of(context).textTheme.bodyText1,),
+          Text("Incorrect Quizs : ${totalQuiz - quiz.rifgt}",style: Theme.of(context).textTheme.bodyText1,),
+          Text("Percent : ${quiz.percent}",style: Theme.of(context).textTheme.bodyText1,),
+        ],
+      ),
+      actions: [
+        TextButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            child: Text('Close',style: Theme.of(context).textTheme.headline3,))
+      ],
     );
   }
 
