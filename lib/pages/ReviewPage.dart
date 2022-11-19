@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:gramming/class/Question.dart';
+import 'package:gramming/class/Quiz.dart';
 
 class ReviewPage extends StatefulWidget{
   const ReviewPage({Key? key}) : super (key:key);
@@ -12,9 +14,17 @@ class ReviewPage extends StatefulWidget{
 
 class _ReviewPageState extends State<ReviewPage> {
 
+  late Quiz quiz=Quiz(name: 'Quiz', questions: []);
+
   Future<void> readJson() async{
     final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
     final List<String> data = await json.decode(response);
+    for (var item in data){
+      Question question= Question.fromJson(item);
+      question.question += question.TypeQuestion;
+      quiz.questions.add(question);
+    }
+    setState(() { });
   }
 
 
@@ -33,7 +43,7 @@ class _ReviewPageState extends State<ReviewPage> {
         elevation: 0,
         title: const Text('QUIZ'),
       ),
-      body: Column(
+      body: quiz.questions.isNotEmpty ? Column(
         children: [
           Container(
             padding: const EdgeInsets.all(10),
@@ -47,7 +57,7 @@ class _ReviewPageState extends State<ReviewPage> {
                 )
             ),
             child: Center(
-              child: Text('Questions',
+              child: Text('Questions: ${quiz.questions.length}',
                 style: Theme
                     .of(context)
                     .textTheme
@@ -57,22 +67,26 @@ class _ReviewPageState extends State<ReviewPage> {
           ),
           Expanded(
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: quiz.questions.length,
                 itemBuilder: (_, index) {
                   return Card(
                     color: Theme
                         .of(context)
                         .primaryColorLight,
                     child: ListTile(
-                      leading: Text('leading'),
-                      title: Text('title'),
-                      trailing: Text('trailing'),
+                      leading: Text('${index+1}'),
+                      title: Text(quiz.questions[index].question),
+                      trailing: Text(quiz.questions[index].answer),
                     ),
                   );
                 },
               )
           ),
         ],
+      ): const Center(
+        child: CircularProgressIndicator(
+          backgroundColor: Colors.deepPurple,
+        ),
       ),
     );
   }
