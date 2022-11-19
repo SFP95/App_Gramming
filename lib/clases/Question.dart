@@ -13,7 +13,7 @@ class Question{
         answer2=json['answer2'];
 
   void addOptions(List<String> newOptions){
-    question+=TypeQuestion;
+    question+= '$TypeQuestion';
     options.add(answer);
     options.addAll(newOptions);
     options.shuffle();
