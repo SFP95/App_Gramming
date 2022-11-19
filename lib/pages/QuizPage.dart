@@ -63,7 +63,13 @@ class _QuizPageState extends State<QuizPage> {
 
     progressIndex+1;
 
-    if(questionsIndex< totalQuiz-1){ questionsIndex+=1; }
+    if(questionsIndex< totalQuiz-1){
+      questionsIndex+=1;
+    }else{
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => buildResultDialog(context));
+    }
 
     setState(() {});
   }
