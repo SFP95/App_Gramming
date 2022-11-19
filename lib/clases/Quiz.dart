@@ -2,7 +2,7 @@ import 'Question.dart';
 
 class Quiz {
   String name;
-  List<Question> quiestions;
+  List<Question> questions;
   int rifgt=0;
 
   Quiz({required this.name, required this.quiestions});

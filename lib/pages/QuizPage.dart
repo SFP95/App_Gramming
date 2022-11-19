@@ -40,9 +40,9 @@ class _QuizPageState extends State<QuizPage> {
 
       Question question = Question.fromJson(data[answer]);
       question.addOptions(otherOptions);
-      quiz.quiestions.add(question);
+      quiz.questions.add(question);
 
-      if(quiz.quiestions.length>= totalQuiz) break;
+      if(quiz.questions.length>= totalQuiz) break;
     }
 
     setState(() {});
@@ -52,6 +52,27 @@ class _QuizPageState extends State<QuizPage> {
   void initState() {
     super.initState();
     readJson();
+  }
+
+  void optionSelected(String selected){
+    quiz.questions[questionsIndex].select= selected;
+    if(selected== quiz.questions[questionsIndex].answer){
+      quiz.questions[questionsIndex].correct == true;
+      quiz.rifgt += 1;
+    }
+
+    progressIndex+1;
+
+    if(questionsIndex< totalQuiz-1){ questionsIndex+=1; }
+
+    setState(() {});
+  }
+
+  Widget buildResultDialog (BuildContext context){
+    return AlertDialog(
+      title: Text('Results',style: Theme.of(context).textTheme.headline1,),
+      backgroundColor: Theme.of(context).primaryColorDark,
+    );
   }
 
   @override
@@ -72,7 +93,7 @@ class _QuizPageState extends State<QuizPage> {
               borderRadius: BorderRadius.circular(15),
                 child: LinearProgressIndicator(
                   color: Colors.deepPurpleAccent.shade400,
-                  value: .5,
+                  value: progressIndex/totalQuiz,
                   minHeight: 20,
                 )
             ),
@@ -81,13 +102,13 @@ class _QuizPageState extends State<QuizPage> {
             constraints: const BoxConstraints(maxHeight: 450),
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
-              child:  quiz.quiestions.isNotEmpty ? Card(
+              child:  quiz.questions.isNotEmpty ? Card(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
                       margin: const EdgeInsets.all(15),
-                      child:  Text(quiz.quiestions[questionsIndex].question,style: Theme.of(context).textTheme.headline1),
+                      child:  Text(quiz.questions[questionsIndex].question,style: Theme.of(context).textTheme.headline1),
                     ),
                     Flexible(
                       child: ListView.builder(
@@ -108,9 +129,9 @@ class _QuizPageState extends State<QuizPage> {
                         ),
                         leading: Text('${index + 1}',
                             style: Theme.of(context).textTheme.bodyText1),
-                        title: Text(quiz.quiestions[questionsIndex].options[index],style: Theme.of(context).textTheme.headline2),
+                        title: Text(quiz.questions[questionsIndex].options[index],style: Theme.of(context).textTheme.headline2),
                         onTap: (){
-
+                          optionSelected(quiz.questions[questionsIndex].options[index]);
                         },
                       ),
                     );
@@ -125,7 +146,7 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
           TextButton(
-            onPressed: () {  },
+            onPressed: () { optionSelected('Skipped'); },
             child:  Text('Skip',
               style: Theme.of(context).textTheme.bodyText1),
           ),
