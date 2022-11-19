@@ -1,15 +1,24 @@
 class Question{
   late String TypeQuestion;
-  String question="Resolve: \n";
+  late String question="Resolve: \n";
   late String answer;
   //late String answer2;
   List<String> options=[];
   String select="Skypped";
   bool correct=false;
 
-  Question.fromJson(Map<String, dynamic> json)
-      : question= json['question'],
-        answer=json['answer'];
+  Question({
+    required this.TypeQuestion,
+    required this.answer
+});
+  
+  factory Question.fromJson(Map<String, dynamic> json){
+    return Question(
+        TypeQuestion: json['question'].toString(),
+        answer: json['answer'].toString()
+    );
+  }
+
        // answer2=json['answer2'];
 
   void addOptions(List<String> newOptions){

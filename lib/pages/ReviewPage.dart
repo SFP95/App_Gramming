@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:gramming/class/Question.dart';
 import 'package:gramming/class/Quiz.dart';
 
@@ -17,16 +18,16 @@ class _ReviewPageState extends State<ReviewPage> {
   late Quiz quiz=Quiz(name: 'Quiz', questions: []);
 
   Future<void> readJson() async{
-    final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
+    final String response = await rootBundle.loadString('assets/quiestions.json');
     final List<String> data = await json.decode(response);
+
     for (var item in data){
-      Question question= Question.fromJson(item);
+      Question question= Question.fromJson(jsonDecode(item));
       question.question += question.TypeQuestion;
       quiz.questions.add(question);
     }
     setState(() { });
   }
-
 
   @override
   void initState() {

@@ -23,8 +23,8 @@ class _QuizPageState extends State<QuizPage> {
   Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
   Future<void> readJson() async{
-    final String response = await rootBundle.loadString('assets/QuestionsQuiz.json');
-    final List<String> data = await json.decode(response);
+    final String response = await rootBundle.loadString('assets/quiestions.json');
+    final List<String> data = await jsonDecode(response);
     List<int> optionList = List<int>.generate(data.length, (i) => i);
     List<int> questionsAdded=[];
 
@@ -36,10 +36,10 @@ class _QuizPageState extends State<QuizPage> {
 
       List<String> otherOptions=[];
       for(var op in optionList.sublist(1,totalOps)){
-        otherOptions.add(data[op]['answer']); // no me coje 'answer' por algún motivo
+        otherOptions.add(jsonDecode(data[op]['answer'])); // no me coje 'answer' por algún motivo
       }
 
-      Question question = Question.fromJson(data[answer]); // (data[answer]) no me tira
+      Question question = Question.fromJson(jsonDecode(data[answer])); // (data[answer]) no me tira
       question.addOptions(otherOptions);
       quiz.questions.add(question);
 
