@@ -1,5 +1,55 @@
+
+
+import 'dart:convert';
+
+
+Question questionsLoadFromJson(String str) {
+  final jsonData = json.decode(str);
+  return Question.fromJson(jsonData);
+}
+
+String questionsToJson(Question q) {
+  final dyn = q.toJson();
+  return json.encode(dyn);
+}
+
+class QuestionData{
+  late List<Question> question;
+
+  QuestionData({
+    required this.question
+});
+  factory QuestionData.fromJson(Map<String,dynamic> json) => new QuestionData(
+  question: new List<Question>.from(
+  json['question'].map((x)=> Question.fromJson(x))
+  )
+  );
+  Map<String, dynamic> toJson() => {
+    'question':
+        new List<dynamic>.from(question).map((x)=> x.toJson())
+  };
+}
+
 class Question{
-  late String TypeQuestion;
+
+  late String qID;
+  late String valor;
+
+  Question({
+    required this.qID,
+    required this.valor
+  });
+
+ factory Question.fromJson(Map<String, dynamic> json) => new Question(
+   qID: json['qID'],
+   valor: json['question']
+ );
+
+ Map<String,dynamic> toJson() => {
+   'qID': qID,
+  'question': valor,
+ };
+/*late String TypeQuestion;
   late String question="Resolve: \n";
   late String answer;
   //late String answer2;
@@ -26,5 +76,5 @@ class Question{
     options.add(answer);
     options.addAll(newOptions);
     options.shuffle();
-  }
+  }*/
 }

@@ -23,10 +23,17 @@ class _QuizPageState extends State<QuizPage> {
   Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
   Future<void> readJson() async{
-    final String response = await rootBundle.loadString('assets/quiestions.json');
-    final List<String> data = await jsonDecode(response);
-    List<int> optionList = List<int>.generate(data.length, (i) => i);
-    List<int> questionsAdded=[];
+    final String CallQJason = await rootBundle.loadString('assets/questions.json');
+    final List<String> Lq = await jsonDecode(CallQJason);
+    final String CallAJason = await rootBundle.loadString('assets/answers.json');
+    final List<String> La = await jsonDecode(CallAJason);
+
+
+
+    //  List<int> optionList = List<int>.generate(La.length, (i) => i);
+  //  List<int> questions   Added=[];
+
+
 
     while(true){
       optionList.shuffle();
