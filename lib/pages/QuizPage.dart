@@ -35,8 +35,9 @@ class _QuizPageState extends State<QuizPage> {
       questionsAdded.add(answer);
 
       List<String> otherOptions=[];
-      for(var op in optionList.sublist(1,totalOps)){
-        otherOptions.add(jsonDecode(data[op]['answer'])); // no me coje 'answer' por algún motivo
+
+      for(var op in optionList){
+        otherOptions.add(jsonDecode(data[op]['answer'])); // no me coge 'answer' por algún motivo
       }
 
       Question question = Question.fromJson(jsonDecode(data[answer])); // (data[answer]) no me tira
