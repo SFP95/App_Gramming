@@ -45,10 +45,14 @@ class Question{
    valor: json['question']
  );
 
+  get question => valor;
+
  Map<String,dynamic> toJson() => {
    'qID': qID,
   'question': valor,
  };
+ 
+ 
 /*late String TypeQuestion;
   late String question="Resolve: \n";
   late String answer;

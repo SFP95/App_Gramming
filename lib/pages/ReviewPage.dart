@@ -23,7 +23,7 @@ class _ReviewPageState extends State<ReviewPage> {
 
     for (var item in data){
       Question question= Question.fromJson(jsonDecode(item));
-      question.question += question.TypeQuestion;
+      question.question += question.valor;
       quiz.questions.add(question);
     }
     setState(() { });
