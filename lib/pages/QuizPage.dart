@@ -59,9 +59,7 @@ class _QuizPageState extends State<QuizPage> {
   Future leerQuestions() async{
     String stringJson= await readJson(); //cargado del json string crudo desde assets
     final jsonResponse= json.decode(stringJson); // decodificado de cadena json cruda
-    Question questions= Question.fromJson(stringJson); //serialización de la repsuesta json, llamando al obgeto para usar los componentesdes json
-    print(questions.studentScores);
-  }
+    Question questions= Question.fromJson(jsonResponse); //serialización de la repsuesta json, llamando al obgeto para usar los componentesdes json}
 
   @override
   void initState() {

@@ -42,8 +42,8 @@ class Question{
 
  factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
-     quest: json['question'],
-     answ: json['answer']
+     quest: json['question'] as String,
+     answ: json['answer'] as String
   );
 
  }
