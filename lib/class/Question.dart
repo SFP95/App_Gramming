@@ -32,24 +32,24 @@ class QuestionData{
 
 class Question{
 
-  late String qID;
-  late String valor;
+  late String quest;
+  late String answ;
 
   Question({
-    required this.qID,
-    required this.valor
+    required this.quest,
+    required this.answ
   });
 
  factory Question.fromJson(Map<String, dynamic> json) => new Question(
-   qID: json['qID'],
-   valor: json['question']
+     quest: json['qID'],
+     answ: json['question']
  );
 
-  get question => valor;
+
 
  Map<String,dynamic> toJson() => {
-   'qID': qID,
-  'question': valor,
+   'qID': quest,
+  'question': answ,
  };
  
  
