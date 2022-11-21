@@ -8,6 +8,44 @@ import 'package:quiz_app/pages/results_page.dart';
 class QuizPage extends StatefulWidget {
   const QuizPage({Key? key}) : super(key: key);
 
+  Future<String> readJson() async{
+    return await rootBundle.loadString('assets/q&a.json'); //cargar el documento json
+  }
+
+  Future leerQuestions() async {
+    String stringJson = await readJson(); //cargado del json string crudo desde assets
+    final jsonResponse = json.decode(
+        stringJson); // decodificado de cadena json cruda
+    Question questions = Question.fromJson(
+        jsonResponse); //serialización de la repsuesta json, llamando al obgeto para usar los componentesdes json}
+
+    @override
+    void initState() {
+      super.initState();
+      readJson();
+    }
+  }
+
+  void optionSelected(String selected){
+    quiz.questions[questionsIndex].select= selected;
+    if(selected== quiz.questions[questionsIndex].answer){
+      quiz.questions[questionsIndex].correct == true;
+      quiz.rifgt += 1;
+    }
+
+    progressIndex+1;
+
+    if(questionsIndex< totalQuiz-1){
+      questionsIndex+=1;
+    }else{
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => buildResultDialog(context));
+    }
+
+    setState(() {});
+  }
+
   @override
   State<QuizPage> createState() => _QuizPageState();
 }

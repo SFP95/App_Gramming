@@ -38,26 +38,6 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
-  void optionSelected(String selected){
-    quiz.questions[questionsIndex].select= selected;
-    if(selected== quiz.questions[questionsIndex].answer){
-      quiz.questions[questionsIndex].correct == true;
-      quiz.rifgt += 1;
-    }
-
-    progressIndex+1;
-
-    if(questionsIndex< totalQuiz-1){
-      questionsIndex+=1;
-    }else{
-      showDialog(
-          context: context,
-          builder: (BuildContext context) => buildResultDialog(context));
-    }
-
-    setState(() {});
-  }
-
   Widget buildResultDialog (BuildContext context){
     return AlertDialog(
       title: Text('Results',style: Theme.of(context).textTheme.headline3,),
