@@ -40,16 +40,19 @@ class Question{
     required this.answ
   });
 
- factory Question.fromJson(Map<String, dynamic> json) => new Question(
-     quest: json['qID'],
-     answ: json['question']
- );
+ factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
+     quest: json['question'],
+     answ: json['answer']
+  );
+
+ }
 
 
 
  Map<String,dynamic> toJson() => {
-   'qID': quest,
-  'question': answ,
+   'question': quest,
+  'answer': answ,
  };
  
  

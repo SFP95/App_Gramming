@@ -22,19 +22,18 @@ class _QuizPageState extends State<QuizPage> {
 
   Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
-  Future<void> readJson() async{
-    final String CallQJason = await rootBundle.loadString('assets/questions.json');
-    final List<String> Lq = await jsonDecode(CallQJason);
-    final String CallAJason = await rootBundle.loadString('assets/answers.json');
-    final List<String> La = await jsonDecode(CallAJason);
-
-
+  Future<String> readJson() async{
+    return await rootBundle.loadString('assets/q&a.json');
+    
+    //final List<String> Lq = await jsonDecode(CallQJason);
+    //final String CallAJason = await rootBundle.loadString('assets/answers.json');
+    //final List<String> La = await jsonDecode(CallAJason);
+    
 
     //  List<int> optionList = List<int>.generate(La.length, (i) => i);
   //  List<int> questions   Added=[];
-
-
-
+    
+/*
     while(true){
       optionList.shuffle();
       int answer =optionList[0];
@@ -52,9 +51,16 @@ class _QuizPageState extends State<QuizPage> {
       quiz.questions.add(question);
 
       if(quiz.questions.length>= totalQuiz) break;
-    }
+    }*/
 
-    setState(() {});
+    //setState(() {});
+  }
+  
+  Future leerQuestions() async{
+    String stringJson= await readJson(); //cargado del json string crudo desde assets
+    final jsonResponse= json.decode(stringJson); // decodificado de cadena json cruda
+    Question questions= Question.fromJson(stringJson); //serialización de la repsuesta json, llamando al obgeto para usar los componentesdes json
+    print(questions.studentScores);
   }
 
   @override
