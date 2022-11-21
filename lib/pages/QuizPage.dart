@@ -23,21 +23,18 @@ class _QuizPageState extends State<QuizPage> {
 
   Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
-  Future<String> readJson() async{
-    return await rootBundle.loadString('assets/q&a.json'); //cargar el documento json
-  }
-  
-  Future leerQuestions() async {
-    String stringJson = await readJson(); //cargado del json string crudo desde assets
-    final jsonResponse = json.decode(
-        stringJson); // decodificado de cadena json cruda
-    Question questions = Question.fromJson(
-        jsonResponse); //serialización de la repsuesta json, llamando al obgeto para usar los componentesdes json}
+  Future<Question> fetchAlbum() async {
+    final response = await http
+        .get(Uri.parse('assets/q&a.json'));
 
-    @override
-    void initState() {
-      super.initState();
-      readJson();
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return Question.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
     }
   }
 

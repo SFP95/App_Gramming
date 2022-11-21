@@ -18,16 +18,19 @@ class _ReviewPageState extends State<ReviewPage> {
 
   late Quiz quiz=Quiz(name: 'Quiz', questions: []);
 
-  Future<void> readJson() async{
-    final String response = await rootBundle.loadString('assets/quiestions.json');
-    final List<String> data = await json.decode(response);
+  Future<Question> fetchAlbum() async {
+    final response = await http
+        .get(Uri.parse('assets/q&a.json'));
 
-    for (var item in data){
-      Question question= Question.fromJson(jsonDecode(item));
-      question.question += question.valor;
-      quiz.questions.add(question);
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return Question.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
     }
-    setState(() { });
   }
 
   @override
