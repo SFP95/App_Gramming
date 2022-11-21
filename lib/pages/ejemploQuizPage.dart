@@ -19,6 +19,42 @@ class _QuizPageState extends State<QuizPage> {
   int progressIndex = 0;
   Quiz quiz = Quiz(name: 'Quiz de Capitales', questions: []);
 
+
+
+
+  //final List<String> Lq = await jsonDecode(CallQJason);
+  //final String CallAJason = await rootBundle.loadString('assets/answers.json');
+  //final List<String> La = await jsonDecode(CallAJason);
+
+
+  //  List<int> optionList = List<int>.generate(La.length, (i) => i);
+  //  List<int> questions   Added=[];
+
+/*
+    while(true){
+      optionList.shuffle();
+      int answer =optionList[0];
+      if(questionsAdded.contains(answer)) continue;
+      questionsAdded.add(answer);
+
+      List<String> otherOptions=[];
+
+      for(var op in optionList){
+        otherOptions.add(jsonDecode(data[op]['answer'])); // no me coge 'answer' por algún motivo
+      }
+
+      Question question = Question.fromJson(jsonDecode(data[answer])); // (data[answer]) no me tira
+      question.addOptions(otherOptions);
+      quiz.questions.add(question);
+
+      if(quiz.questions.length>= totalQuiz) break;
+    }*/
+
+  //setState(() {});
+
+
+
+
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/paises.json');
     final List<dynamic> data = await json.decode(response);
