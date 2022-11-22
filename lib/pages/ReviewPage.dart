@@ -95,7 +95,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         .of(context)
                         .primaryColorLight,
                     child: ListTile(
-                      leading: Text('${index+1}'),
+                      leading: Text('${index+1}',style: Theme.of(context).textTheme.headline4,),
                       title: Text(quiz.questions[index].question),
                       trailing: Text(quiz.questions[index].answer,
                       style: Theme.of(context).textTheme.headline4),

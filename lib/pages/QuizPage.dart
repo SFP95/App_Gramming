@@ -111,26 +111,27 @@ Future<void> readQuestionsAndAnwersJson() async {
   void initState() {
     super.initState();
     readQuestionsAndAnwersJson();
-
   }
+
   void _optionSelected(String selected) {
     quiz.questions[questionsIndex].selected = selected;
+    //coincidencia de pregunta correcta seleccionada
     if (selected == quiz.questions[questionsIndex].answer) {
       quiz.questions[questionsIndex].correct = true;
       quiz.right += 1;
     }
 
     progressIndex += 1;
-    if (questionsIndex < totalQuiz - 1) {
-      questionsIndex += 1;
+
+    if (questionsIndex < totalQuiz -1 ) {
+      questionsIndex += 0;
     } else {
       showDialog(
           barrierDismissible: false,
           context: context,
           builder: (BuildContext context) => buildResultDialog(context));
     }
-
-    setState(() {});
+    setState(() { });
   }
   /**
    *
