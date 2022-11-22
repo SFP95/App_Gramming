@@ -182,7 +182,8 @@ Future<void> readQuestionsAndAnwersJson() async {
                 child: LinearProgressIndicator(
                   color: Colors.deepPurpleAccent.shade400,
                   value: progressIndex/totalQuiz,
-                  minHeight: 15,
+                  minHeight: 19,
+                  backgroundColor: Colors.white38,
                 )
             ),
           ),
@@ -216,7 +217,7 @@ Future<void> readQuestionsAndAnwersJson() async {
                           ),
                         ),
                         leading: Text('${index + 1}',
-                            style: Theme.of(context).textTheme.bodyText1),
+                            style: Theme.of(context).textTheme.headline1),
                         title: Text(quiz.questions[questionsIndex].options[index],style: Theme.of(context).textTheme.headline2),
                         onTap: (){
                      //     optionSelected(quiz.questions[questionsIndex].options[index]);
@@ -238,7 +239,7 @@ Future<void> readQuestionsAndAnwersJson() async {
              _optionSelected('Skipped');
              },
             child:  Text('Skip',
-              style: Theme.of(context).textTheme.bodyText1),
+                style: Theme.of(context).textTheme.headline1),
           ),
         ],
       ),
