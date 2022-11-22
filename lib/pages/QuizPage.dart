@@ -23,7 +23,14 @@ class _QuizPageState extends State<QuizPage> {
 
   Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
-  Future<Question> fetchAlbum() async {
+  @override
+  void initState() {
+    super.initState();
+    getQuestionsAndAnwers();
+  }
+
+
+void getQuestionsAndAnwers(){
     final response = await http
         .get(Uri.parse('assets/q&a.json'));
 

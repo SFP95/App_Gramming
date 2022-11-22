@@ -1,16 +1,15 @@
 import 'dart:convert';
 
-class Welcome {
+class Question {
   late String question;
   late String answer;
 
-
-  Welcome({
+  Question({
     required this.question,
     required this.answer,
   });
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory Question.fromJson(Map<String, dynamic> json) => Welcome(
     question: json["question"],
     answer: json["answer"],
   );
