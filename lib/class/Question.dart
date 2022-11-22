@@ -14,6 +14,8 @@ class Question {
     answer: json["answer"],
   );
 
+  get options => null;
+
   Map<String, dynamic> toJson() => {
     "question": question,
     "answer": answer,

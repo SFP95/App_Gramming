@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart';
 import 'package:gramming/pages/ResultPage.dart';
 import '../class/Question.dart';
 import '../class/Quiz.dart';
@@ -23,11 +22,7 @@ class _QuizPageState extends State<QuizPage> {
 
   Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
-  @override
-  void initState() {
-    super.initState();
-    getQuestionsAndAnwers();
-  }
+
 
 
 Future<Question> getQuestionsAndAnwers() async {
@@ -37,7 +32,12 @@ Future<Question> getQuestionsAndAnwers() async {
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      print("QUUESTIONS ? -->>"+jsonDecode(response.body));
+      //print("QUUESTIONS ? -->>"+json.decode(response.body).toString());
+      Map<String,dynamic> json2=jsonDecode(response.body);
+      print("QUESTION ------------->"+json2['question'].toString());
+      print("ANSER ------------->"+json2['answer'].toString());
+
+
       return Question.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 200 OK response,
@@ -45,6 +45,62 @@ Future<Question> getQuestionsAndAnwers() async {
       throw Exception('Failed to load QuestionsAndAnswers');
     }
   }
+
+  /**
+   *  Future<void> readJson() async {
+      final String response = await rootBundle.loadString('assets/paises.json');
+      final List<dynamic> data = await json.decode(response);
+      List<int> optionList = List<int>.generate(data.length, (i) => i);
+      List<int> questionsAdded = [];
+
+      while (true) {
+      optionList.shuffle();
+      int answer = optionList[0];
+      if (questionsAdded.contains(answer)) continue;
+      questionsAdded.add(answer);
+
+      List<String> otherOptions = [];
+      for (var option in optionList.sublist(1, totalOptions)) {
+      otherOptions.add(data[option]['capital']);
+      }
+
+      Question question = Question.fromJson(data[answer]);
+      question.addOptions(otherOptions);
+      quiz.questions.add(question);
+
+      if (quiz.questions.length >= totalQuestions) break;
+      }
+
+      setState(() {});
+      }
+   */
+  @override
+  void initState() {
+    super.initState();
+    getQuestionsAndAnwers();
+  }
+
+  /**
+   * void _optionSelected(String selected) {
+      quiz.questions[questionIndex].selected = selected;
+      if (selected == quiz.questions[questionIndex].answer) {
+      quiz.questions[questionIndex].correct = true;
+      quiz.right += 1;
+      }
+
+      progressIndex += 1;
+      if (questionIndex < totalQuestions - 1) {
+      questionIndex += 1;
+      } else {
+      showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => _buildResultDialog(context));
+      }
+
+      setState(() {});
+      }
+   */
 
   Widget buildResultDialog (BuildContext context){
     return AlertDialog(
@@ -128,7 +184,7 @@ Future<Question> getQuestionsAndAnwers() async {
                             style: Theme.of(context).textTheme.bodyText1),
                         title: Text(quiz.questions[questionsIndex].options[index],style: Theme.of(context).textTheme.headline2),
                         onTap: (){
-                          optionSelected(quiz.questions[questionsIndex].options[index]);
+                     //     optionSelected(quiz.questions[questionsIndex].options[index]);
                         },
                       ),
                     );
@@ -143,7 +199,9 @@ Future<Question> getQuestionsAndAnwers() async {
             ),
           ),
           TextButton(
-            onPressed: () { optionSelected('Skipped'); },
+           onPressed: () {
+             optionSelected('Skipped');
+             },
             child:  Text('Skip',
               style: Theme.of(context).textTheme.bodyText1),
           ),
