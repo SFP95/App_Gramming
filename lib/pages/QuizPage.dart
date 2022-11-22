@@ -30,18 +30,19 @@ class _QuizPageState extends State<QuizPage> {
   }
 
 
-void getQuestionsAndAnwers(){
+Future<Question> getQuestionsAndAnwers() async {
     final response = await http
         .get(Uri.parse('assets/q&a.json'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
+      print("QUUESTIONS ? -->>"+jsonDecode(response.body));
       return Question.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load album');
+      throw Exception('Failed to load QuestionsAndAnswers');
     }
   }
 
