@@ -16,7 +16,7 @@ class ReviewPage extends StatefulWidget{
 }
 
 class _ReviewPageState extends State<ReviewPage> {
-  int totalQuiz=5;
+  int totalQuiz=20;
   int totalOps=4;
   late Quiz quiz=Quiz(name: 'Quiz', questions: []);
 
@@ -36,7 +36,7 @@ class _ReviewPageState extends State<ReviewPage> {
 
       List<String> otherOptions = [];
       for (var option in optionList.sublist(1, totalOps)) {
-        otherOptions.add(data[option]['capital']);
+        otherOptions.add(data[option]['question']);
       }
 
       Question question = Question.fromJson(data[answer]);
@@ -97,7 +97,8 @@ class _ReviewPageState extends State<ReviewPage> {
                     child: ListTile(
                       leading: Text('${index+1}'),
                       title: Text(quiz.questions[index].question),
-                      trailing: Text(quiz.questions[index].answer),
+                      trailing: Text(quiz.questions[index].answer,
+                      style: Theme.of(context).textTheme.headline4),
                     ),
                   );
                 },

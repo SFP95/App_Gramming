@@ -226,7 +226,7 @@ Future<void> readQuestionsAndAnwersJson() async {
           ),
           TextButton(
            onPressed: () {
-             //optionSelected('Skipped');
+             _optionSelected('Skipped');
              },
             child:  Text('Skip',
               style: Theme.of(context).textTheme.bodyText1),
