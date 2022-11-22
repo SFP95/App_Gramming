@@ -33,9 +33,9 @@ class ResultPage extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text('Quizs: ${quiz.questions.length}',
-                    style: Theme.of(context).textTheme.headline2,),
+                    style: Theme.of(context).textTheme.headline4,),
                   Text('Corrects: ${quiz.percent} %',
-                    style: Theme.of(context).textTheme.headline2,),
+                    style: Theme.of(context).textTheme.headline4,),
                 ],
               ),
             ),

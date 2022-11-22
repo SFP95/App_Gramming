@@ -107,7 +107,7 @@ class _ReviewPageState extends State<ReviewPage> {
         ],
       ): const Center(
         child: CircularProgressIndicator(
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Colors.white,
         ),
       ),
     );

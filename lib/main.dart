@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget{
         textTheme: TextTheme(
           headline1: TextStyle(
             color: Colors.deepPurpleAccent.shade400,
-            fontSize: 30,
+            fontSize: 22,
             fontWeight:  FontWeight.w500,
             shadows: [
               Shadow(
@@ -42,7 +42,11 @@ class MyApp extends StatelessWidget{
           bodyText1: TextStyle(
             color: Colors.deepPurpleAccent.shade700,
             fontSize: 18,
-          )
+          ),
+            bodyText2: TextStyle(
+              color: Colors.deepPurple.shade100,
+              fontSize: 18,
+            )
         ),
         cardTheme: CardTheme(
           elevation: 6,

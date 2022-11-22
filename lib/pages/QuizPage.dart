@@ -25,28 +25,36 @@ class _QuizPageState extends State<QuizPage> {
 
 
 Future<void> readQuestionsAndAnwersJson() async {
-   // final response = await http.get(Uri.parse('assets/q&a.json'));
-
+  //Load doc json
   final String response = await rootBundle.loadString('assets/q&a.json');
+    //Decode "responde" and transform to list
     final List<dynamic> data = await json.decode(response);
+    //list to options in to the index where have all questions and answers
     List<dynamic> optionList = List<dynamic>.generate(data.length, (i) => i);
+    //lista para que no se respitan las preguntas
     List<dynamic> questionsAdded = [];
 
   while (true) {
+    //para organizar de forma aleatoria
     optionList.shuffle();
     int answer = optionList[0];
+    //si la pregunt aya esta agregada en el contenedor que continue con la siguiente
     if (questionsAdded.contains(answer)) continue;
     questionsAdded.add(answer);
 
     List<String> otherOptions = [];
+    //agregamos las respuestas incorrestar para la answers para las opciones
     for (var option in optionList.sublist(1, totalOps)) {
       otherOptions.add(data[option]['answer']);
     }
 
+    //creamos objeto pregunta para las answer, que será la opcion corecta
+    // y llamamos al contenedor para incluirla y desordenarlas
     Question question = Question.fromJson(data[answer]);
     question.addOptions(otherOptions);
     quiz.questions.add(question);
 
+    //condicion para que acabe el bucle
     if (quiz.questions.length >= totalQuiz) break;
   }
 
@@ -136,10 +144,10 @@ Future<void> readQuestionsAndAnwersJson() async {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Total Quizs : $totalQuiz",style: Theme.of(context).textTheme.bodyText1,),
-          Text("Correct Quizs : $quiz.right",style: Theme.of(context).textTheme.bodyText1,),
-          Text("Incorrect Quizs : ${totalQuiz - quiz.right}",style: Theme.of(context).textTheme.bodyText1,),
-          Text("Percent : ${quiz.percent} %",style: Theme.of(context).textTheme.bodyText1,),
+          Text("Total Quizs : $totalQuiz",style: Theme.of(context).textTheme.bodyText2,),
+          Text("Correct Quizs : ${quiz.right}",style: Theme.of(context).textTheme.bodyText2,),
+          Text("Incorrect Quizs : ${totalQuiz - quiz.right}",style: Theme.of(context).textTheme.bodyText2,),
+          Text("Percent : ${quiz.percent} %",style: Theme.of(context).textTheme.bodyText2,),
         ],
       ),
       actions: [
@@ -220,7 +228,7 @@ Future<void> readQuestionsAndAnwersJson() async {
                   ],
                 ),
               ):const CircularProgressIndicator(
-                backgroundColor: Colors.deepPurple,
+                backgroundColor: Colors.white,
               ),
             ),
           ),

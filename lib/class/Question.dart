@@ -24,7 +24,7 @@ class Question {
   };
 
   void addOptions(List<String> newOptions) {
-    question += answer;
+    question += question[0];
     options.add(answer);
     options.addAll(newOptions);
     options.shuffle();
