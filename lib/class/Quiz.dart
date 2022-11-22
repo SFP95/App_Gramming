@@ -3,9 +3,9 @@ import 'Question.dart';
 class Quiz {
   String name;
   List<Question> questions;
-  int rifgt=0;
+  int right=0;
 
   Quiz({required this.name, required this.questions});
 
-  double get percent => (rifgt/questions.length)*100;
+  double get percent => (right/questions.length)*100;
 }

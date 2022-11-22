@@ -105,27 +105,27 @@ Future<void> readQuestionsAndAnwersJson() async {
     readQuestionsAndAnwersJson();
 
   }
-
-  /**
-   * void _optionSelected(String selected) {
-      quiz.questions[questionIndex].selected = selected;
-      if (selected == quiz.questions[questionIndex].answer) {
-      quiz.questions[questionIndex].correct = true;
+  void _optionSelected(String selected) {
+    quiz.questions[questionsIndex].selected = selected;
+    if (selected == quiz.questions[questionsIndex].answer) {
+      quiz.questions[questionsIndex].correct = true;
       quiz.right += 1;
-      }
+    }
 
-      progressIndex += 1;
-      if (questionIndex < totalQuestions - 1) {
-      questionIndex += 1;
-      } else {
+    progressIndex += 1;
+    if (questionsIndex < totalQuiz - 1) {
+      questionsIndex += 1;
+    } else {
       showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) => _buildResultDialog(context));
-      }
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => buildResultDialog(context));
+    }
 
-      setState(() {});
-      }
+    setState(() {});
+  }
+  /**
+   *
    */
 
   Widget buildResultDialog (BuildContext context){
@@ -138,7 +138,7 @@ Future<void> readQuestionsAndAnwersJson() async {
         children: [
           Text("Total Quizs : $totalQuiz",style: Theme.of(context).textTheme.bodyText1,),
           Text("Correct Quizs : $quiz.right",style: Theme.of(context).textTheme.bodyText1,),
-          Text("Incorrect Quizs : ${totalQuiz - quiz.rifgt}",style: Theme.of(context).textTheme.bodyText1,),
+          Text("Incorrect Quizs : ${totalQuiz - quiz.right}",style: Theme.of(context).textTheme.bodyText1,),
           Text("Percent : ${quiz.percent} %",style: Theme.of(context).textTheme.bodyText1,),
         ],
       ),
@@ -173,20 +173,20 @@ Future<void> readQuestionsAndAnwersJson() async {
                 child: LinearProgressIndicator(
                   color: Colors.deepPurpleAccent.shade400,
                   value: progressIndex/totalQuiz,
-                  minHeight: 20,
+                  minHeight: 15,
                 )
             ),
           ),
           ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: 450),
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 0),
               child:  quiz.questions.isNotEmpty ? Card(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      margin: const EdgeInsets.all(15),
+                      margin: const EdgeInsets.all(10),
                       child:  Text(quiz.questions[questionsIndex].question,style: Theme.of(context).textTheme.headline1),
                     ),
                     Flexible(
