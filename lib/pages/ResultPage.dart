@@ -53,7 +53,7 @@ class ResultPage extends StatelessWidget{
                           Icon(Icons.close,
                               color: Colors.red.shade700),
                         title: Text(quiz.questions[index].question),
-                          subtitle: Text(quiz.questions[index].select),
+                          subtitle: Text(quiz.questions[index].selected),
                           trailing: Text(quiz.questions[index].answer),
                         ),
                         );

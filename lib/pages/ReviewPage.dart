@@ -8,6 +8,7 @@ import 'package:gramming/class/Question.dart';
 import 'package:gramming/class/Quiz.dart';
 
 class ReviewPage extends StatefulWidget{
+
   const ReviewPage({Key? key}) : super (key:key);
 
   @override
@@ -15,28 +16,43 @@ class ReviewPage extends StatefulWidget{
 }
 
 class _ReviewPageState extends State<ReviewPage> {
-
+  int totalQuiz=5;
+  int totalOps=4;
   late Quiz quiz=Quiz(name: 'Quiz', questions: []);
 
-  Future<Question> fetchAlbum() async {
-    final response = await http
-        .get(Uri.parse('assets/q&a.json'));
+  Future<void> readQuestionsAndAnwersJson() async {
+    // final response = await http.get(Uri.parse('assets/q&a.json'));
 
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return Question.fromJson(jsonDecode(response.body));
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load album');
+    final String response = await rootBundle.loadString('assets/q&a.json');
+    final List<dynamic> data = await json.decode(response);
+    List<dynamic> optionList = List<dynamic>.generate(data.length, (i) => i);
+    List<dynamic> questionsAdded = [];
+
+    while (true) {
+      optionList.shuffle();
+      int answer = optionList[0];
+      if (questionsAdded.contains(answer)) continue;
+      questionsAdded.add(answer);
+
+      List<String> otherOptions = [];
+      for (var option in optionList.sublist(1, totalOps)) {
+        otherOptions.add(data[option]['capital']);
+      }
+
+      Question question = Question.fromJson(data[answer]);
+      question.addOptions(otherOptions);
+      quiz.questions.add(question);
+
+      if (quiz.questions.length >= totalQuiz) break;
     }
+
+    setState(() {});
   }
 
   @override
   void initState() {
     super.initState();
-    readJson();
+    readQuestionsAndAnwersJson();
   }
 
   @override

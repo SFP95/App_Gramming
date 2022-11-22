@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:gramming/pages/ResultPage.dart';
@@ -23,28 +24,52 @@ class _QuizPageState extends State<QuizPage> {
   Quiz quiz = Quiz(name: 'Quizs', questions: []);
 
 
+Future<void> readQuestionsAndAnwersJson() async {
+   // final response = await http.get(Uri.parse('assets/q&a.json'));
 
+  final String response = await rootBundle.loadString('assets/q&a.json');
+    final List<dynamic> data = await json.decode(response);
+    List<dynamic> optionList = List<dynamic>.generate(data.length, (i) => i);
+    List<dynamic> questionsAdded = [];
 
-Future<Question> getQuestionsAndAnwers() async {
-    final response = await http
-        .get(Uri.parse('assets/q&a.json'));
+  while (true) {
+    optionList.shuffle();
+    int answer = optionList[0];
+    if (questionsAdded.contains(answer)) continue;
+    questionsAdded.add(answer);
 
-    if (response.statusCode == 200) {
+    List<String> otherOptions = [];
+    for (var option in optionList.sublist(1, totalOps)) {
+      otherOptions.add(data[option]['answer']);
+    }
+
+    Question question = Question.fromJson(data[answer]);
+    question.addOptions(otherOptions);
+    quiz.questions.add(question);
+
+    if (quiz.questions.length >= totalQuiz) break;
+  }
+
+  setState(() {});
+}
+
+   // if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
       //print("QUUESTIONS ? -->>"+json.decode(response.body).toString());
-      Map<String,dynamic> json2=jsonDecode(response.body);
-      print("QUESTION ------------->"+json2['question'].toString());
-      print("ANSER ------------->"+json2['answer'].toString());
+      // Map<String,dynamic> json2=jsonDecode(response.body);
+      // Map<String,dynamic> lista=json2['palaba1']['palabra2']['palabra3'];  //representar jerarquía de objetos
+      // print("QUESTION ------------->"+json2['question'].toString());
+      // print("ANSER ------------->"+json2['answer'].toString());
 
 
-      return Question.fromJson(jsonDecode(response.body));
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load QuestionsAndAnswers');
-    }
-  }
+    //   return Question.fromJson(jsonDecode(response.body));
+    // } else {
+    //   // If the server did not return a 200 OK response,
+    //   // then throw an exception.
+    //   throw Exception('Failed to load QuestionsAndAnswers');
+    // }
+
 
   /**
    *  Future<void> readJson() async {
@@ -77,7 +102,8 @@ Future<Question> getQuestionsAndAnwers() async {
   @override
   void initState() {
     super.initState();
-    getQuestionsAndAnwers();
+    readQuestionsAndAnwersJson();
+
   }
 
   /**
@@ -200,7 +226,7 @@ Future<Question> getQuestionsAndAnwers() async {
           ),
           TextButton(
            onPressed: () {
-             optionSelected('Skipped');
+             //optionSelected('Skipped');
              },
             child:  Text('Skip',
               style: Theme.of(context).textTheme.bodyText1),

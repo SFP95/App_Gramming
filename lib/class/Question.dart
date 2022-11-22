@@ -3,6 +3,9 @@ import 'dart:convert';
 class Question {
   late String question;
   late String answer;
+  List<String> options = [];
+  bool correct = false;
+  String selected = 'Skipped';
 
   Question({
     required this.question,
@@ -14,12 +17,18 @@ class Question {
     answer: json["answer"],
   );
 
-  get options => null;
 
   Map<String, dynamic> toJson() => {
     "question": question,
     "answer": answer,
   };
+
+  void addOptions(List<String> newOptions) {
+    question += answer;
+    options.add(answer);
+    options.addAll(newOptions);
+    options.shuffle();
+  }
 }
 /**
  * class Question {
