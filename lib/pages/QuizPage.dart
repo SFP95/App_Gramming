@@ -124,7 +124,7 @@ Future<void> readQuestionsAndAnwersJson() async {
     progressIndex += 1;
 
     if (questionsIndex < totalQuiz -1 ) {
-      questionsIndex += 0;
+      questionsIndex += 1;
     } else {
       showDialog(
           barrierDismissible: false,
@@ -220,7 +220,7 @@ Future<void> readQuestionsAndAnwersJson() async {
                             style: Theme.of(context).textTheme.headline1),
                         title: Text(quiz.questions[questionsIndex].options[index],style: Theme.of(context).textTheme.headline2),
                         onTap: (){
-                     //     optionSelected(quiz.questions[questionsIndex].options[index]);
+                          _optionSelected(quiz.questions[questionsIndex].options[index]);
                         },
                       ),
                     );
